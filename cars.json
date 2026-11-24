@@ -1,0 +1,47 @@
+[
+  {
+    "id": "demo1",
+    "brand": "Volkswagen",
+    "model": "Gol Trend 1.6",
+    "year": 2018,
+    "price": 10500,
+    "km": 89000,
+    "fuel": "Nafta",
+    "transmission": "Manual",
+    "status": "Disponible",
+    "desc": "Vehículo de ejemplo. Reemplazá estos datos desde el administrador.",
+    "photos": [
+      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=900&q=80"
+    ]
+  },
+  {
+    "id": "demo2",
+    "brand": "Ford",
+    "model": "Fiesta KD",
+    "year": 2017,
+    "price": 11900,
+    "km": 76000,
+    "fuel": "Nafta",
+    "transmission": "Manual",
+    "status": "Disponible",
+    "desc": "Vehículo de ejemplo. Reemplazá estos datos desde el administrador.",
+    "photos": [
+      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=900&q=80"
+    ]
+  },
+  {
+    "id": "demo3",
+    "brand": "Toyota",
+    "model": "Corolla XEI",
+    "year": 2020,
+    "price": 19500,
+    "km": 56000,
+    "fuel": "Nafta",
+    "transmission": "Automática",
+    "status": "Disponible",
+    "desc": "Vehículo de ejemplo. Reemplazá estos datos desde el administrador.",
+    "photos": [
+      "https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=900&q=80"
+    ]
+  }
+]

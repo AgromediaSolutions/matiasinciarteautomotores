@@ -110,4 +110,23 @@ if(many){let sx=null;const st=$('stage');st.addEventListener('touchstart',e=>{sx
 $('askWa').onclick=()=>wa(c,false);$('reserveWa').onclick=()=>wa(c,true);openModal('detailModal')}
 document.addEventListener('keydown',e=>{if(!$('detailModal').classList.contains('open'))return;if(e.key==='Escape')closeModal('detailModal');else if(galleryGo&&e.key==='ArrowLeft')galleryGo(-1);else if(galleryGo&&e.key==='ArrowRight')galleryGo(1)});
 function editSettings(){if(!logged)return;$('sWhatsapp').value=settings.whatsapp||'';$('sContact').value=settings.contact||'';$('sInstagram').value=settings.instagram||'';openModal('settingsModal')}$('settingsForm').onsubmit=e=>{e.preventDefault();settings={whatsapp:$('sWhatsapp').value.replace(/\D/g,''),contact:$('sContact').value.trim(),instagram:$('sInstagram').value.trim()};localStorage.setItem(SETKEY,JSON.stringify(settings));render();closeModal('settingsModal')};function exportData(){const blob=new Blob([JSON.stringify({cars,settings},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='catalogo-matias-inciarte.json';a.click();URL.revokeObjectURL(a.href)}$('importFile').onchange=async e=>{try{const data=JSON.parse(await e.target.files[0].text());if(!Array.isArray(data.cars))throw Error('Archivo inválido');if(!confirm('¿Reemplazar el catálogo actual con el archivo importado?'))return;cars=data.cars;settings=data.settings||settings;if(save()){localStorage.setItem(SETKEY,JSON.stringify(settings));render();renderAdmin()}}catch(err){alert('No se pudo importar el archivo JSON.')}e.target.value=''};render();
+// ...existing code...
+async function initFromJson(){
+  try{
+	const r=await fetch('./cars.json',{cache:'no-store'});
+	if(!r.ok)throw new Error('cars.json no disponible');
+	const jsonCars=await r.json();
+	if(Array.isArray(jsonCars)&&!localStorage.getItem(KEY))cars=jsonCars;
+  }catch(e){ /* conserva el catálogo local o DEMO */ }
+  try{
+	const r=await fetch('./settings.json',{cache:'no-store'});
+	if(r.ok){
+	  const jsonSettings=await r.json();
+	  if(!localStorage.getItem(SETKEY))settings={...settings,...jsonSettings};
+	}
+  }catch(e){ /* conserva la configuración local o predeterminada */ }
+  render();
+}
+initFromJson();
+// ...existing code...
 </script></body></html>
